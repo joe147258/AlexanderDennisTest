@@ -1,0 +1,96 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Book An Engineer</h1>
+    <div class="main-container">
+        <!--Form-->
+        <form>
+            <div class="form-group">
+                <label>First Name</label>
+                <input type="text" class="form-control" id="formFirstName" placeholder="Enter first name">
+            </div>
+            <div class="form-group">
+                <label>Last Name</label>
+                <input type="text" class="form-control" id="formLastName" placeholder="Enter last name">
+            </div>
+            <div class="form-group">
+                <label>Email address</label>
+                <input type="email" class="form-control" id="formEmailAddress" placeholder="name@example.com">
+            </div>
+            <div class="form-group">
+                <label>Contact Number</label>
+                <input type="tel" class="form-control" id="formContactNumber" placeholder="Enter contact number">
+            </div>
+            <div class="form-group">
+                <label>Job Category</label>
+                <select class="form-select" id="formJobCategory">
+                    <option selected>Select a category</option>
+                    <option>Warranty</option>
+                    <option>Breakdown</option>
+                    <option>Vehicle of Road</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Date</label>
+                <input class="form-control" id="formDate" type="date" name="date" placeholder="MM/DD/YYY" />
+            </div>
+            <div class="form-group">
+                <label class="control-label d-block">Select a time slot</label>
+                <input class="form-control d-inline-block" style="width: 85%" id="formTimeSlot" type="text" placeholder="Time Slot" disabled/>
+                <button type="button" class="btn btn-secondary" id="selectTimeButton" data-bs-toggle="modal" data-bs-target="#timeModal" onclick="configureTimeSlot()">Select Time</button>
+            </div>
+            <button type="button" class="btn btn-primary">Next</button>
+
+            <div id="addressForm">
+                <div class="form-group">
+                    <label>Adress Line 1:</label>
+                    <input type="text" class="form-control" id="formContactNumber" placeholder="Enter address line 1">
+                    <small class="form-text text-muted">Street adress, company name, etc</small>
+                </div>
+                <div class="form-group">
+                    <label>Adress Line 2:</label>
+                    <input type="text" class="form-control" id="formContactNumber" placeholder="Enter address line 2">
+                    <small class="form-text text-muted">Apartment, suite, building, floor, etc</small>
+                </div>
+                <div class="form-group">
+                    <label>City / Town:</label>
+                    <input type="text" class="form-control" id="formContactNumber" placeholder="Enter city / town">
+                </div>
+                <div class="form-group">
+                    <label>County:</label>
+                    <input type="text" class="form-control" id="formContactNumber" placeholder="Enter county">
+                </div>
+                <div class="form-group">
+                    <label>Post Code:</label>
+                    <input type="text" class="form-control" id="formContactNumber" placeholder="Enter post code">
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </form>
+    </div>
+    <!--MODALS-->
+    <div class="modal fade" id="timeModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Select a time</h5>
+                    <button type="button" data-bs-dismiss="modal" aria-label="Close">
+                        <span>&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" id="formTimeSlotDiv">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Confirm time</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
