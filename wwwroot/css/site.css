@@ -19,14 +19,29 @@ body {
 
 .main-container {
     margin: auto;
-    width: 65%;
+    width: 80%;
     text-align: left;
-}
-
-#addressForm {
-    display: none;
 }
 
 #selectTimeButton {
     float: right;
+}
+
+#formNextButton {
+    float: right;
+    margin-top: 5px;
+    width: 10%;
+}
+
+#primaryForm {
+    width: 58%;
+}
+#addressForm {
+    width: 40%;
+    float: right;
+}
+#submitButton {
+    width: 20%;
+    margin-top: 5px;
+    float: left;
 }
