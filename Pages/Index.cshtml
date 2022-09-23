@@ -9,52 +9,55 @@
             <div id="addressForm">
                 <div class="form-group">
                     <label>Adress Line 1:</label>
-                    <input type="text" class="form-control" id="address-line-1" placeholder="Enter address line 1" required>
+                    <input name="AddressLineOne" type="text" class="form-control" id="address-line-1" placeholder="Enter address line 1" required>
                     <small class="form-text text-muted">Street adress, company name, etc</small>
                 </div>
                 <div class="form-group">
                     <label>Adress Line 2:</label>
-                    <input type="text" class="form-control" id="address-line-2" placeholder="Enter address line 2">
+                    <input name="AddressLineTwo" type="text" class="form-control" id="address-line-2" placeholder="Enter address line 2">
                     <small class="form-text text-muted">Apartment, suite, building, floor, etc</small>
                 </div>
                 <div class="form-group">
                     <label>City / Town:</label>
-                    <input type="text" class="form-control" id="formCity" placeholder="Enter city / town" required>
+                    <input name="City" type="text" class="form-control" id="formCity" placeholder="Enter city / town" required>
                 </div>
                 <div class="form-group">
                     <label>County:</label>
-                    <input type="text" class="form-control" id="formCountry" placeholder="Enter county" required>
+                    <input name="County" type="text" class="form-control" id="formCounty" placeholder="Enter county">
                 </div>
                 <div class="form-group">
                     <label>Post Code:</label>
-                    <input type="text" class="form-control" id="formPostCode" placeholder="Enter post code" required>
+                    <input name="PostCode" type="text" class="form-control" id="formPostCode" placeholder="Enter post code" required>
                 </div>
             </div>
             <!--Primary Form-->
             <div id="primaryForm">
                 <div class="form-group">
                     <label>First Name</label>
-                    <input type="text" class="form-control" id="formFirstName" placeholder="Enter first name" required>
+                    <input name="FirstName" type="text" class="form-control" id="formFirstName" placeholder="Enter first name" required>
                 </div>
                 <div class="form-group">
                     <label>Last Name</label>
-                    <input type="text" class="form-control" id="formLastName" placeholder="Enter last name" required>
+                    <input name="LastName" type="text" class="form-control" id="formLastName" placeholder="Enter last name" required>
                 </div>
                 <div class="form-group">
                     <label>Email address</label>
-                    <input type="email" class="form-control" id="formEmailAddress" placeholder="name@example.com"required>
+                    <input name="Email" type="email" class="form-control" id="formEmailAddress" placeholder="name@example.com" required>
                 </div>
                 <div class="form-group">
                     <label>Contact Number</label>
                     <span id="contactNumberPopover" data-bs-toggle="popover" data-bs-placement="left" data-bs-content="Ensure this is a valid phone number.">
-                        <input type="tel" class="form-control" id="formContactNumber" placeholder="Enter contact number" onkeyup="removeInvalid('formContactNumber')" required>
+                        <input name="ContactNumber" type="tel" class="form-control" id="formContactNumber" placeholder="Enter contact number" onkeyup="removeInvalid('formContactNumber')" required>
                     </span>
-                
+                </div>
+                <div class="form-group">
+                    <label>Vehicle Registration (no space)</label>
+                    <input name="Registration" type="text" class="form-control" id="formRegistration" placeholder="Enter vehicle registration" maxlength="7" onkeypress="return event.charCode != 32" required>
                 </div>
                 <div class="form-group">
                     <label>Job Category</label>
                     <span id="jobCatPopover" data-bs-toggle="popover" data-bs-placement="left" data-bs-content="Please select a catergory.">
-                        <select class="form-select" id="formJobCategory" onchange="removeInvalid('formJobCategory')" required>
+                        <select name="JobCategory" class="form-select" id="formJobCategory" onchange="removeInvalid('formJobCategory')" required>
                             <option value="nonSelected" selected>Select a category</option>
                             <option value="warranty">Warranty</option>
                             <option value="breakdown">Breakdown</option>
@@ -64,16 +67,16 @@
                 </div>
                 <div class="form-group">
                     <label class="control-label">Date</label>
-                    <input class="form-control" id="formDate" type="date" name="date" placeholder="MM/DD/YYY" onchange="clearTimeSlot()" required/>
+                    <input class="form-control" id="formDate" type="date" name="Date" placeholder="MM/DD/YYY" onchange="clearTimeSlot()" required/>
                 </div>
                 <div class="form-group">
                     <label class="control-label d-block">Select a time slot</label>
-                    <input class="form-control d-inline-block" style="width: 79%" id="formTimeSlot" type="text" placeholder="Time Slot" onKeyDown="return false" autocomplete="off" required />
+                    <input name="TimeSlot" class="form-control d-inline-block" style="width: 79%" id="formTimeSlot" type="text" placeholder="Time Slot" onKeyDown="return false" autocomplete="off" required />
                     <button type="button" class="btn btn-secondary" id="selectTimeButton" data-bs-toggle="modal" data-bs-target="#timeModal" onclick="configureTimeSlot()">Select Time</button>
                 </div>
                 <div class="form-group">
                     <label for="exampleFormControlTextarea1">Comments</label>
-                    <textarea class="form-control" id="formAddtionalComments" rows="3"></textarea>
+                    <textarea name="Comment" class="form-control" id="formAddtionalComments" rows="3"></textarea>
                 </div>
             </div>
             <button id="submitButton" type="submit" onclick="validateFormInputs(event)" class="btn btn-primary">Submit</button>

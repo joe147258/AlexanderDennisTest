@@ -4,6 +4,13 @@
 // Write your JavaScript code.
 const nonSelectedConst = "nonSelected";
 
+// I've tried to keep jQuery use to a minimum here to keep it similar to React, etc
+
+// Functions to run on launch.
+window.onload = function () {
+    setMinDate();
+};
+
 configureTimeSlot = () => {
     // Get Date from date selector
     let formDate = document.getElementById('formDate').value;
@@ -102,6 +109,19 @@ validateFormInputs = (e) => {
         $('#jobCatPopover').popover('show');
         return;
     }
+
+    let formData = objectifyForm($('#engineerForm').serializeArray());
+    console.log(formData)
+    fetch("/api/book", {
+        method: "POST",
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData)
+    })
+        .then(res => res.json())
+        .then(data => {
+            console.log(data);
+        });
+
 }
 
 setTimeSlot = () => {
@@ -111,4 +131,31 @@ setTimeSlot = () => {
 
 clearTimeSlot = () => {
     document.getElementById('formTimeSlot').value = '';
+}
+
+// Serialize data function
+// https://stackoverflow.com/questions/1184624/convert-form-data-to-javascript-object-with-jquery
+function objectifyForm(formArray) {
+    var returnArray = {};
+    for (var i = 0; i < formArray.length; i++) {
+        returnArray[formArray[i]['name']] = formArray[i]['value'];
+    }
+    return returnArray;
+}
+
+ setMinDate = () => {
+    var minDate = new Date();
+    minDate.setDate(minDate.getDate() + 2);
+    
+    const dateInput = document.getElementById('formDate');
+
+    let month = minDate.getMonth() + 1;
+    let day = minDate.getDate();
+    let year = minDate.getFullYear();
+
+    if (month < 10) month = '0' + month.toString();
+    if (day < 10) day = '0' + day.toString();
+    var minDateString = year + '-' + month + '-' + day;
+
+    dateInput.setAttribute('min', minDateString)
 }
