@@ -23,9 +23,8 @@ namespace AlexanderDennisTest.Controller
             using (var reader = new StreamReader(Request.Body))
             {
                 string body = await reader.ReadToEndAsync();
-                System.Diagnostics.Debug.WriteLine(body);
                 var result = JsonConvert.DeserializeObject<FormData>(body);
-
+                System.Diagnostics.Debug.WriteLine(result.ValidateInput());
                 System.Diagnostics.Debug.WriteLine(result.Registration);
                 return Ok(result.Registration);
             }

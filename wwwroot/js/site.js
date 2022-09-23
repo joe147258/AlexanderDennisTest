@@ -55,8 +55,10 @@ configureTimeSlot = () => {
 
             optThree.innerHTML = "14:00 - 16:00";
             optThree.value = "14:00 - 16:00";
+            break;
         case 2:
         case 4:
+            console.log("here??")
             optOne.innerHTML = "9:00 - 11:00";
             optOne.value = "9:00 - 11:00";
 
@@ -65,12 +67,14 @@ configureTimeSlot = () => {
 
             optThree.innerHTML = "15:00 - 17:00";
             optThree.value = "15:00 - 17:00";
+            break;
         case 5:
             optOne.innerHTML = "8:00 - 10:00";
             optOne.value = "8:00 - 10:00";
 
             optTwo.innerHTML = "11:00 - 13:00";
             optTwo.value = "11:00 - 13:00";
+            break;
     }
 
     selectVar.appendChild(optOne);
