@@ -6,6 +6,7 @@ namespace AlexanderDennisTest.Domain
 {
     public class FormData
     {
+        // I use readonly arrays here as it is easy to change and add values.
         // Const array with the properties that are allowed to be null.
         private static readonly string[] AllowedNullOrEmptyFields = { "Comment", "County" };
         // Const array with the Monday and Wednesday Times.
@@ -60,6 +61,13 @@ namespace AlexanderDennisTest.Domain
                 throw new ArgumentException("Day of week is a weekend.");
             }
 
+            // Check date is two days in the future
+            DateTime minDate = DateTime.Now.AddDays(2);
+            if (parsedDate < minDate)
+            {
+                throw new ArgumentException("Date is not 2 days in the future.");
+            }
+
             // Ensure correct timeslots are available on certain day
             switch (parsedDate.DayOfWeek) 
             {
@@ -86,9 +94,16 @@ namespace AlexanderDennisTest.Domain
             // Validate Regex on email and contact number
             Match emailMatch = EmailRegex.Match(this.Email);
             if (!emailMatch.Success) throw new ArgumentException("Non valid email address.");
+
             Match contactNumberMatch = ContactNumberRegex.Match(this.ContactNumber);
             if (!contactNumberMatch.Success) throw new ArgumentException("Non valid contact number.");
 
+            // No spaces in registration for uniformity
+            if ((this.Registration.Contains(" ")) || (this.Registration.Length > 7))
+            {
+                throw new ArgumentException("Space in registration or is greater than 7 characters.");
+            }
+            System.Diagnostics.Debug.WriteLine(JobCategory);
             return true;
         }
     }
