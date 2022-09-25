@@ -103,7 +103,7 @@ namespace AlexanderDennisTest.Domain
             {
                 throw new ArgumentException("Space in registration or is greater than 7 characters.");
             }
-            System.Diagnostics.Debug.WriteLine(JobCategory);
+
             return true;
         }
     }

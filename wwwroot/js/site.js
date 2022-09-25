@@ -2,9 +2,9 @@
 // for details on configuring this project to bundle and minify static web assets.
 
 // Write your JavaScript code.
-const nonSelectedConst = "nonSelected";
-
 // I've tried to keep jQuery use to a minimum here to keep it similar to React, etc
+
+const nonSelectedConst = "nonSelected";
 
 // Functions to run on launch.
 window.onload = function () {
