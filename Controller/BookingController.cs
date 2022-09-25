@@ -26,5 +26,11 @@ namespace AlexanderDennisTest.Controller
                 return StatusCode(500, "Failed to validate submitted data.");
             }
         }
+
+        [Route("GetTimeSlots/{*path}")]
+        public string[] Invoke(string path)
+        {
+            return BookingService.GetTimeSlotsFromDate(path);
+        }
     }
 }

@@ -1,5 +1,7 @@
 ﻿using AlexanderDennisTest.Domain;
 using Microsoft.Data.SqlClient;
+using System.Globalization;
+
 namespace AlexanderDennisTest.Database
 {
     public class DatabaseConnector
@@ -28,6 +30,30 @@ namespace AlexanderDennisTest.Database
             }
 
             return true;
+        }
+
+        public string[] GetBookedTimeSlots(string date)
+        {
+            string command = $"SELECT * FROM EngineerTable WHERE BookingDate = \'{date}\'";
+            using SqlCommand cmd = new SqlCommand(command, connection);
+            // Ensures the correct type of date is passed
+            try
+            {
+                DateTime result = DateTime.ParseExact(date, "yyyy-MM-dd", CultureInfo.InvariantCulture);
+            }
+            catch (FormatException)
+            {
+                throw new ArgumentException("Non valid date passed");
+            }
+            List<string> usedTimeSlots = new List<string>();
+            using (SqlDataReader reader = cmd.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    usedTimeSlots.Add(reader["TimeSlot"].ToString());
+                }
+            }
+            return usedTimeSlots.ToArray();
         }
     }
 }

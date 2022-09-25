@@ -28,6 +28,11 @@ namespace AlexanderDennisTest.Service
             return true;
         }
 
+        public static string[] GetTimeSlotsFromDate(string date)
+        {
+            return DbConnector.GetBookedTimeSlots(date);
+        }
+
         private static bool GenerateAndSendEmail(FormData engineerFormData)
         {
             // Using FluentEmail nuget package
