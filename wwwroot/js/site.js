@@ -58,7 +58,6 @@ configureTimeSlot = () => {
             break;
         case 2:
         case 4:
-            console.log("here??")
             optOne.innerHTML = "9:00 - 11:00";
             optOne.value = "9:00 - 11:00";
 
@@ -121,11 +120,18 @@ validateFormInputs = (e) => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData)
     })
-        .then(res => res.json())
-        .then(data => {
-            console.log(data);
+        .then(res => {
+            if (res.ok) {
+                document.getElementById("engineerForm").reset();
+                $('#successModal').modal('show');
+            }
+            else {
+                alert("Failed to send data.");
+            }
+        })
+        .catch((error) => {
+            alert("Failed to send data.");
         });
-
 }
 
 setTimeSlot = () => {

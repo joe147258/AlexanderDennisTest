@@ -1,5 +1,8 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.IdentityModel.Tokens;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
 using System.Reflection;
+using System.Text;
 using System.Text.RegularExpressions;
 
 namespace AlexanderDennisTest.Domain
@@ -8,7 +11,7 @@ namespace AlexanderDennisTest.Domain
     {
         // I use readonly arrays here as it is easy to change and add values.
         // Const array with the properties that are allowed to be null.
-        private static readonly string[] AllowedNullOrEmptyFields = { "Comment", "County" };
+        private static readonly string[] AllowedNullOrEmptyFields = { "Comment", "County", "AddressLineTwo" };
         // Const array with the Monday and Wednesday Times.
         private static readonly string[] MondayAndWedesndayTimeSlots = { "8:00 - 10:00", "11:00 - 13:00", "14:00 - 16:00" };
         // Const array with the Tuesday and Thursday Times.
@@ -16,8 +19,8 @@ namespace AlexanderDennisTest.Domain
         // Const array with the Friday Times.
         private static readonly string[] FridayTimeSlots = { "8:00 - 10:00", "11:00 - 13:00" };
 
-        private static Regex EmailRegex = new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$");
-        private static Regex ContactNumberRegex = new Regex(@"^(\+)?([ 0-9]){10,16}$");
+        private static readonly Regex EmailRegex = new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$");
+        private static readonly Regex ContactNumberRegex = new Regex(@"^(\+)?([ 0-9]){10,16}$");
         public enum JobCategoryEnum { warranty, breakdown, vechicleOnRoad }
 
         public string AddressLineOne { get; set; }
@@ -35,6 +38,22 @@ namespace AlexanderDennisTest.Domain
         public string Comment { get; set; }
         public string Registration { get; set; }
 
+        public string GenerateEmailBody()
+        {
+            StringBuilder emailBodyBuilder = new StringBuilder();
+            emailBodyBuilder.Append($"You have received a new booking.");
+            emailBodyBuilder.Append($"\nClient:\n{FirstName} {LastName}\n{Email}\n{ContactNumber}\n");
+            emailBodyBuilder.Append($"Job Details:\nCatergory - {JobCategory.ToString()}\nVehicle Registration - {Registration}\nDate: {Date}\nTime: {TimeSlot}\nLocation: ");
+            emailBodyBuilder.Append($"{AddressLineOne}, ");
+            if (!AddressLineTwo.IsNullOrEmpty()) emailBodyBuilder.Append($"{AddressLineTwo}, ");
+            emailBodyBuilder.Append($"{City}, ");
+            if (!County.IsNullOrEmpty()) emailBodyBuilder.Append($"{County}, ");
+            emailBodyBuilder.Append($"{PostCode}\n");
+            emailBodyBuilder.Append("Client's additional comment:\n");
+            if (!Comment.IsNullOrEmpty()) emailBodyBuilder.Append(Comment);
+            else emailBodyBuilder.Append("N/A");
+            return emailBodyBuilder.ToString();
+        }
         public bool ValidateInput()
         {
             // Checks that no required property is empty.

@@ -17,7 +17,6 @@ namespace AlexanderDennisTest.Database
         {
             string command = "INSERT INTO EngineerTable (AddressLineOne, AddressLineTwo, City, County, PostCode, FirstName, LastName, Email, ContactNumber, JobCategory, BookingDate, TimeSlot, Comment, Registration) " +
                 $"VALUES (\'{formData.AddressLineOne}\', \'{formData.AddressLineTwo}\', \'{formData.City}\', \'{formData.County}\', \'{formData.PostCode}\', \'{formData.FirstName}\', \'{formData.LastName}\', \'{formData.Email}\', \'{formData.ContactNumber}\', \'{formData.JobCategory}\', \'{formData.Date}\', \'{formData.TimeSlot}\', \'{formData.Comment}\', \'{formData.Registration}\');";
-            System.Diagnostics.Debug.WriteLine(command);
             try
             {
                 using SqlCommand cmd = new SqlCommand(command, connection);
@@ -25,10 +24,9 @@ namespace AlexanderDennisTest.Database
             }
             catch (SqlException)
             {
-                System.Diagnostics.Debug.WriteLine("here - error!");
                 return false;
             }
-            System.Diagnostics.Debug.WriteLine("here - not error!");
+
             return true;
         }
     }
