@@ -21,7 +21,7 @@ namespace AlexanderDennisTest.Domain
 
         private static readonly Regex EmailRegex = new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$");
         private static readonly Regex ContactNumberRegex = new Regex(@"^(\+)?([ 0-9]){10,16}$");
-        public enum JobCategoryEnum { warranty, breakdown, vechicleOnRoad }
+        public enum JobCategoryEnum { warranty, breakdown, vehicleOfRoad }
 
         public string AddressLineOne { get; set; }
         public string AddressLineTwo { get; set; }
@@ -82,7 +82,7 @@ namespace AlexanderDennisTest.Domain
 
             // Check date is two days in the future
             DateTime minDate = DateTime.Now.AddDays(2);
-            if (parsedDate < minDate)
+            if (parsedDate.Date < minDate.Date)
             {
                 throw new ArgumentException("Date is not 2 days in the future.");
             }
@@ -121,6 +121,11 @@ namespace AlexanderDennisTest.Domain
             if ((this.Registration.Contains(" ")) || (this.Registration.Length > 7))
             {
                 throw new ArgumentException("Space in registration or is greater than 7 characters.");
+            }
+
+            if (Comment.Length > 255)
+            {
+                throw new ArgumentException("Comment is too long!");
             }
 
             return true;

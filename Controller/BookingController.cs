@@ -27,10 +27,22 @@ namespace AlexanderDennisTest.Controller
             }
         }
 
-        [Route("GetTimeSlots/{*path}")]
-        public string[] Invoke(string path)
+        [Route("GetBookedSlots/{*path}")]
+        public string[] GetTimeSlots(string path)
         {
-            return BookingService.GetTimeSlotsFromDate(path);
+            return BookingService.GetFullyBookedTimeSlotsFromDate(path);
+        }
+
+        [Route("GetAllBookings")]
+        public string GetAllBookings()
+        {
+            return BookingService.GetAllBookings();
+        }
+
+        [Route("GetDatabaseBooking/{*id}")]
+        public string GetDatabaseBooking(int id)
+        {
+            return BookingService.GetDatabaseBooking(id);
         }
     }
 }

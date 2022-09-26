@@ -10,12 +10,10 @@
                 <div class="form-group">
                     <label>Adress Line 1:</label>
                     <input name="AddressLineOne" type="text" class="form-control" id="address-line-1" placeholder="Enter address line 1" required>
-                    <small class="form-text text-muted">Street adress, company name, etc</small>
                 </div>
                 <div class="form-group">
                     <label>Adress Line 2:</label>
                     <input name="AddressLineTwo" type="text" class="form-control" id="address-line-2" placeholder="Enter address line 2">
-                    <small class="form-text text-muted">Apartment, suite, building, floor, etc</small>
                 </div>
                 <div class="form-group">
                     <label>City / Town:</label>
@@ -71,16 +69,17 @@
                 </div>
                 <div class="form-group">
                     <label class="control-label d-block">Select a time slot</label>
-                    <input name="TimeSlot" class="form-control d-inline-block" style="width: 79%" id="formTimeSlot" type="text" placeholder="Time Slot" onKeyDown="return false" autocomplete="off" required />
+                    <input name="TimeSlot" class="form-control d-inline-block" style="width: 79%" id="formTimeSlot" type="text" placeholder="Select time slot" onKeyDown="return false" autocomplete="off" required />
                     <button type="button" class="btn btn-secondary" id="selectTimeButton" data-bs-toggle="modal" data-bs-target="#timeModal" onclick="configureTimeSlot()">Select Time</button>
                 </div>
                 <div class="form-group">
-                    <label for="exampleFormControlTextarea1">Comments</label>
-                    <textarea name="Comment" class="form-control" id="formAddtionalComments" rows="3"></textarea>
+                    <label for="exampleFormControlTextarea1">Comment (max 255 characters)</label>
+                    <textarea name="Comment" class="form-control" id="formAddtionalComments" rows="3" maxlength="255"></textarea>
                 </div>
             </div>
-            <button id="submitButton" type="submit" onclick="validateFormInputs(event)" class="btn btn-primary">Submit</button>
-            
+            <div class="buttonHolder">
+                <button id="submitButton" type="submit" onclick="validateFormInputs(event)" class="btn btn-primary">Submit</button>
+            </div>
         </form>
     </div>
     <!--MODALS-->

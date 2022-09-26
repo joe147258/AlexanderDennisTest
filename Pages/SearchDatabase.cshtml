@@ -1,0 +1,63 @@
+﻿@page
+@model SearchDatabaseModel
+
+<div class="text-center">
+    <h1 class="display-4">Search Database</h1>
+    <h3>Get specific Entry (via ID):</h3>
+    <input type="number" id="specificSearch" style="width: 100px">
+    <button class="btn btn-primary" onclick="specificSearch()">Retrieve</button>
+    <h3>Table</h3>
+        <input type="text" id="searchInput" onkeyup="searchDatabaseTable()" placeholder="Search...">
+        <table id="databaseTable">
+            <tr class="header">
+                <th>ID</th>
+                <th>AddressLine 1</th>
+                <th>AddressLine 2</th>
+                <th>City</th>
+                <th>County</th>
+                <th>Post Code</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+                <th>Number</th>
+                <th>Job Category</th>
+                <th>Registration</th>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Comment</th>
+            </tr>
+            <tbody id="databaseTableBody">
+            </tbody>
+        </table>
+        <!--MODALS-->
+        <div class="modal fade" id="commentModal" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Comment</h5>
+                    </div>
+                    <div class="modal-body">
+                        <p id="commentModalPara"></p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <div class="modal fade" id="specificEntryModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">JSON for specific entry:</h5>
+                </div>
+                <div class="modal-body">
+                    <p id="specificEntryModalPara"></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
