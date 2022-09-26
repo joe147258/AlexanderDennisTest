@@ -10,8 +10,12 @@ NuGet Packages used:
  - Newtonsoft.Json
  
 This must be configured to connect to a SQL server database. A connection string can be set in appsettings.json.   
-For a local host connection on a database called 'AlexanderDennis' I use this string: > Server=localhost\\SQLEXPRESS;Database=AlexanderDennis;TrustServerCertificate=True;Trusted_Connection=True;   
+  
+For a local host connection on a database called 'AlexanderDennis' I use this string:    
+>Server=localhost\\SQLEXPRESS;Database=AlexanderDennis;TrustServerCertificate=True;Trusted_Connection=True;   
+  
 (Note: I used TrustServerCertificate=True;Trusted_Connection=True at the end of my string to prevent SSL errors)    
+    
 To create a database I used microsoft sql server management studio (SSMS).
 Once the database has been created I have a SQL query in the repo (AlexanderDennisDatabaseInit.sql) to create the two needed tables and insert needed data (EngineerTable and FullyBookedTimesTable).     
 
