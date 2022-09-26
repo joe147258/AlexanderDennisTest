@@ -1,6 +1,7 @@
 ﻿using AlexanderDennisTest.Domain;
 using Microsoft.Data.SqlClient;
 using Microsoft.SqlServer.Server;
+using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 using System.Globalization;
 using System.Linq;
@@ -13,7 +14,7 @@ namespace AlexanderDennisTest.Database
 
         public DatabaseConnector()
         {
-            string connectionString = @"Server=localhost\SQLEXPRESS;Database=AlexanderDennis;TrustServerCertificate=True;Trusted_Connection=True;";
+            string connectionString = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build().GetSection("Database")["ConnectionString"]; ;
             connection = new SqlConnection(connectionString);
             connection.Open();
         }
