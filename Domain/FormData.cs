@@ -54,6 +54,7 @@ namespace AlexanderDennisTest.Domain
             else emailBodyBuilder.Append("N/A");
             return emailBodyBuilder.ToString();
         }
+
         public bool ValidateInput()
         {
             // Checks that no required property is empty.

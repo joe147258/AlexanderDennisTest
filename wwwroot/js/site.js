@@ -22,7 +22,6 @@ configureTimeSlot = () => {
     let formDate = document.getElementById('formDate').value;
     let date = new Date(formDate);
 
-    console.log(date.getDay());
     // Select and Options DOM element
     let timeSlotDiv = document.getElementById('formTimeSlotDiv');
     let selectVar = document.createElement("select");
